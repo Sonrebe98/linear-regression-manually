@@ -1,4 +1,6 @@
 import numpy as np
+# Visualizzazione grafica
+from visualization import plot_training_history
 
 def load_data_from_csv(filename):
     """Carica i dati dal CSV in un array numpy"""
@@ -62,7 +64,7 @@ def gradient_descent(X, y, w, b, learning_rate, num_iterations, m):
     dj_dw, dj_db = compute_gradient(X, y, tmp_w, tmp_b, m)  # Usa tmp_w, tmp_b non w, b
     tmp_w = tmp_w - learning_rate * dj_dw
     tmp_b = tmp_b - learning_rate * dj_db
-    if i < 100 or i % 100 == 0:  # Salva solo alcune iterazioni per efficienza
+    if i < num_iterations:
       history_j.append(compute_cost(X, y, tmp_w, tmp_b, m))
       history_params.append([tmp_w, tmp_b])
   
@@ -81,7 +83,9 @@ print(f"final total cost: {total_cost}")
 input_x = 8.52
 result = predict(input_x, final_w, final_b)
 
-
 print(f"the prediction for {input_x} hours of study is this vote: {result}")
+
+
+plot_training_history(history_j, history_params, X, y, final_w, final_b)
 
 

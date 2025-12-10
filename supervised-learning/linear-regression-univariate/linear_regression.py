@@ -1,4 +1,5 @@
 import numpy as np
+import os
 # Visualizzazione grafica
 from visualization import plot_training_history
 
@@ -20,8 +21,9 @@ def load_data_from_csv(filename):
     Y = data_array[:, 1]
     return X, Y
     
-
-X, y = load_data_from_csv('dati_voti.csv')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(script_dir, 'dati_voti.csv')
+X, y = load_data_from_csv(csv_path)
 m = len(X)
 w = 0.0
 b = 0.0
